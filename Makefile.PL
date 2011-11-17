@@ -27,6 +27,7 @@ all_from 'lib/Malts/Web/Request/MobileAgent.pm';
 
 requires 'HTTP::MobileAgent';
 requires 'HTTP::MobileAgent::Plugin::Charset';
+requires 'Encode::JP::Mobile';
 
 test_requires 'Test::More' => '0.88';
 

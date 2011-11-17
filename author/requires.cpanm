@@ -1,6 +1,7 @@
 # for Malts-Web-Request-MobileAgent
 HTTP::MobileAgent
 HTTP::MobileAgent::Plugin::Charset
+Encode::JP::Mobile
 
 # Makefile.PL
 Module::Install
