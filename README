@@ -1,0 +1,35 @@
+This is Perl module Malts::Web::Request::MobileAgent.
+
+INSTALLATION
+
+Install cpanm (App::cpanminus) and then run the following command to install
+Malts::Web::Request::MobileAgent:
+
+    $ cpanm Malts::Web::Request::MobileAgent
+
+If you get an archive of this distribution, unpack it and build it
+as per the usual:
+
+    $ tar xzf Malts-Web-Request-MobileAgent-$version.tar.gz
+    $ cd Malts-Web-Request-MobileAgent-$version
+    $ perl Makefile.PL
+    $ make && make test
+
+Then install it:
+
+    $ make install
+
+DOCUMENTATION
+
+Malts::Web::Request::MobileAgent documentation is available as in POD. So you can do:
+
+    $ perldoc Malts::Web::Request::MobileAgent
+
+to read the documentation online with your favorite pager.
+
+LICENSE AND COPYRIGHT
+
+Copyright (c) 2011, hisaichi5518. All rights reserved.
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
