@@ -26,6 +26,7 @@ use inc::Module::Install;
 all_from 'lib/Malts/Web/Request/MobileAgent.pm';
 
 requires 'HTTP::MobileAgent';
+requires 'HTTP::MobileAgent::Plugin::Charset';
 
 test_requires 'Test::More' => '0.88';
 

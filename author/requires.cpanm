@@ -1,4 +1,7 @@
 # for Malts-Web-Request-MobileAgent
+HTTP::MobileAgent
+HTTP::MobileAgent::Plugin::Charset
+
 # Makefile.PL
 Module::Install
 Module::Install::AuthorTests
