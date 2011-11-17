@@ -8,7 +8,7 @@ our $VERSION = '0.01';
 
 sub Malts::Web::Request::mobile_agent {
     my ($req) = @_;
-    $req->env->{'malts.mobile.agent'} ||= HTTP::MobileAgent->new($req->env);
+    $req->env->{'malts.mobile_agent'} ||= HTTP::MobileAgent->new($req->env);
 }
 
 1;
