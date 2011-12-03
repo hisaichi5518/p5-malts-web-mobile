@@ -23,7 +23,7 @@ BEGIN {
 }
 use inc::Module::Install;
 
-all_from 'lib/Malts/Web/Request/MobileAgent.pm';
+all_from 'lib/Malts/Web/MobileAgent.pm';
 
 requires 'HTTP::MobileAgent';
 requires 'HTTP::MobileAgent::Plugin::Charset';
@@ -36,7 +36,7 @@ author_tests 'xt';
 
 
 clean_files qw(
-    Malts-Web-Request-MobileAgent-*
+    Malts-Web-MobileAgent-*
     *.stackdump
     cover_db *.gcov *.gcda *.gcno
     nytprof

@@ -6,7 +6,7 @@ use Encode::JP::Mobile;
 
 sub init {
     my ($class, $c, $conf) = @_;
-    my $ma = $c->request->mobile_agent;
+    my $ma = $c->mobile_agent;
 
     $c->html_content_type(
         ($ma->is_docomo ? 'application/xhtml+xml;charset=' : 'text/html;charset=').
@@ -29,10 +29,11 @@ Malts::Plugin::Web::MobileCharset - jp mobile plugin for malts
 
     package MyApp::Web;
     use parent qw(Malts Malts::Web);
+    use Malts::Web::MobileAgent qw(mobile_agent);
 
     sub startup {
         my $c = shift;
-        $c->plugin('Web::MobileAgent');
+        $c->plugin('Web::MobileCharset');
     }
 
 =head1 DESCRIPTION
