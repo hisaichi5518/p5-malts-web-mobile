@@ -5,11 +5,10 @@ use warnings;
 package MyApp::Web;
 use parent qw(Malts Malts::Web);
 use Malts::Web::MobileAgent qw(mobile_agent);
+use Malts::Web::MobileCharset;
 
 package main;
 use Test::More;
-use Malts::Plugin::Web::MobileCharset;
-use Scope::Container qw(start_scope_container);
 
 subtest 'testing mobile_agent' => sub {
     my $c = non_mobile_user();
@@ -30,27 +29,31 @@ subtest 'testing mobile_agent' => sub {
 subtest 'testing charset' => sub {
     my $c = non_mobile_user();
     my $ma = $c->mobile_agent;
-    is $ma->encoding, "utf-8";
+    is $ma->encoding, 'utf-8';
 
     $c = ezweb_user();
     $ma = $c->mobile_agent;
-    is $ma->encoding, "x-sjis-ezweb-auto";
+    is $ma->encoding, 'x-sjis-ezweb-auto';
 };
 
 subtest 'testing mobile charset plugin' => sub {
-    my $sc = start_scope_container;
-
     my $c = non_mobile_user();
-    Malts::Plugin::Web::MobileCharset->init($c, {});
     is $c->html_content_type, "text/html;charset=utf-8";
+    isa_ok $c->encoding, 'Encode::utf8';
 
     $c = ezweb_user();
-    Malts::Plugin::Web::MobileCharset->init($c, {});
     is $c->html_content_type, "text/html;charset=Shift_JIS";
+    isa_ok $c->encoding, 'Encode::JP::Mobile::_ConvertPictogramSJISkddi-auto';
 
     $c = docomo_user();
-    Malts::Plugin::Web::MobileCharset->init($c, {});
     is $c->html_content_type, "application/xhtml+xml;charset=utf-8";
+    isa_ok $c->encoding, 'Encode::XS';
+};
+
+subtest 'render_string' => sub {
+    my $c = docomo_user();
+    my $res = $c->render_string(200, 'testtesttest');
+    is_deeply $res->body, ['testtesttest'];
 };
 
 sub ezweb_user {
