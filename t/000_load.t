@@ -3,7 +3,7 @@ use strict;
 use Test::More tests => 1;
 
 BEGIN {
-    use_ok 'Malts::Web::Request::MobileAgent';
+    use_ok 'Malts::Web::MobileAgent';
 }
 
-diag "Testing Malts::Web::Request::MobileAgent/$Malts::Web::Request::MobileAgent::VERSION";
+diag "Testing Malts::Web::MobileAgent/$Malts::Web::MobileAgent::VERSION";
