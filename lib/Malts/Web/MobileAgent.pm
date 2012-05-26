@@ -6,11 +6,11 @@ use HTTP::MobileAgent;
 use Exporter 'import';
 
 our $VERSION = '0.01';
-our @EXPORT_OK = qw(mobile_agent);
+our @EXPORT = qw(mobile_agent);
 
 sub mobile_agent {
     my $c = shift;
-    $c->{mobile_agent} ||= HTTP::MobileAgent->new($c->request->env);
+    $c->{'Malts::Web::MobileAgent'} ||= HTTP::MobileAgent->new($c->request->env);
 }
 
 1;
@@ -22,7 +22,7 @@ Malts::Web::MobileAgent - Perl extention to do something
 
 =head1 SYNOPSIS
 
-    use Malts::Web::MobileAgent qw(mobile_agent);
+    use Malts::Web::MobileAgent;
     sub startup {
         my $c = shift;
         if ($c->mobile_agent->is_docomo) {
@@ -41,8 +41,6 @@ Malts::Web::MobileAgent - Perl extention to do something
     $c->mobile_agent;
 
 L<HTTP::MobileAgent> のオブジェクトを返します。
-
-現在、キャッシュをC<$c->{'mobile_agent'}>に保存していますが、これは変更される可能性があります。直接触らないようにしてください。
 
 =head1 AUTHOR
 
