@@ -19,9 +19,11 @@ sub html_content_type {
     return $ct;
 }
 
-# Encode::encode()も毎回find_encoding()してるので
-# 呼び出す度find_encoding()するからと言って絶望的に遅くなるわけではない。
-sub encoding { Malts::Util::find_encoding($_[0]->mobile_agent->encoding) }
+sub encoding {
+    my ($c) = @_;
+    $c->{'Malts::Web::MobileCharset::encoding'} ||=
+        Malts::Util::find_encoding($c->mobile_agent->encoding);
+}
 
 1;
 __END__
