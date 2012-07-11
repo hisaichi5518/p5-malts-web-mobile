@@ -5,7 +5,7 @@ use warnings;
 use HTTP::MobileAgent;
 use Exporter 'import';
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 our @EXPORT = qw(mobile_agent);
 
 sub mobile_agent {
