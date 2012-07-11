@@ -10,7 +10,8 @@ our @EXPORT = qw(mobile_agent);
 
 sub mobile_agent {
     my $c = shift;
-    $c->{'Malts::Web::MobileAgent'} ||= HTTP::MobileAgent->new($c->request->env);
+    $c->{'Malts::Web::MobileAgent'} ||=
+        HTTP::MobileAgent->new($c->request->env);
 }
 
 1;
