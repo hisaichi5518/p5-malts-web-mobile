@@ -22,17 +22,31 @@ Malts::Web::MobileAgent - Perl extention to do something
 
 =head1 SYNOPSIS
 
+    package MyApp::Web;
+    use strict;
+    use warnings;
+    use parent qw(Malts Malts::Web);
     use Malts::Web::MobileAgent;
-    sub startup {
+
+    sub dispatch {
         my $c = shift;
         if ($c->mobile_agent->is_docomo) {
-            ...
+            return $c->render(200, 'root/docomo.tx');
+        }
+        elsif ($c->mobile_agent->is_ezweb) {
+            return $c->render(200, 'root/ezweb.tx');
+        }
+        elsif ($c->mobile_agent->is_softbank) {
+            return $c->render(200, 'root/softbank.tx');
+        }
+        else {
+            return $c->render(200, 'root/pc.tx');
         }
     }
 
 =head1 DESCRIPTION
 
-# TODO
+HTTP::MobileAgentのオブジェクトを返す C<$c->mobile_agent> メソッドを生やします。
 
 =head1 METHOD
 

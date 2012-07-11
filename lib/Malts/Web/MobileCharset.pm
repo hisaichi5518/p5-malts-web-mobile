@@ -11,7 +11,7 @@ our @EXPORT = qw(html_content_type encoding);
 # html_content_typeを呼び出すのは大抵1度なのでキャッシュしない。
 sub html_content_type {
     my ($c) = @_;
-    my $ma = $c->mobile_agent;
+    my $ma = $c->mobile_agent; # use Malts::Web::MobileAgent;
 
     my $ct = $ma->is_docomo ?
         'application/xhtml+xml;charset=' : 'text/html;charset=';
@@ -35,12 +35,14 @@ Malts::Web::MobileCharset - jp mobile plugin for malts
 =head1 SYNOPSIS
 
     package MyApp::Web;
+    use strict;
+    use warnings;
     use parent qw(Malts Malts::Web);
-    use Malts::Web::MobileAgent qw(mobile_agent);
+    use Malts::Web::MobileAgent;
     use Malts::Web::MobileCharset;
     use Log::Minimal;
 
-    sub startup {
+    sub dispatch {
         debugf $c->encoding;
         debugf $c->html_content_type;
         ...;
