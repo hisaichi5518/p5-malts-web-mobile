@@ -4,7 +4,7 @@ use warnings;
 
 package MyApp::Web;
 use parent qw(Malts Malts::Web);
-use Malts::Web::MobileAgent qw(mobile_agent);
+use Malts::Web::MobileAgent;
 use Malts::Web::MobileCharset;
 
 package main;
