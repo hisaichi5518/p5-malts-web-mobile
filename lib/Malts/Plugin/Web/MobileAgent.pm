@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use HTTP::MobileAgent;
 
-our $VERSION = '0.02';
+our $VERSION = '0.50';
 
 sub init {
     my ($class, $c) = @_;
