@@ -1,0 +1,4 @@
+Revision history for Perl extension Malts::Web::Request::MobileAgent
+
+0.50 2012-10-21
+    - use Malts 0.800
