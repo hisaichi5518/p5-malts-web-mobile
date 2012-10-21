@@ -1,14 +1,17 @@
-package Malts::Web::MobileAgent;
+package Malts::Plugin::Web::MobileAgent;
 use 5.008_001;
 use strict;
 use warnings;
 use HTTP::MobileAgent;
-use Exporter 'import';
 
 our $VERSION = '0.02';
-our @EXPORT = qw(mobile_agent);
 
-sub mobile_agent {
+sub init {
+    my ($class, $c) = @_;
+    $c->add_method(mobile_agent => \&_mobile_agent);
+}
+
+sub _mobile_agent {
     my $c = shift;
     $c->{'Malts::Web::MobileAgent'} ||=
         HTTP::MobileAgent->new($c->request->env);
@@ -26,8 +29,8 @@ Malts::Web::MobileAgent - Perl extention to do something
     package MyApp::Web;
     use strict;
     use warnings;
-    use parent qw(Malts Malts::Web);
-    use Malts::Web::MobileAgent;
+    use parent qw(Malts);
+    __PACKAGE__->load_plugins(qw/Web::MobileAgent/);
 
     sub dispatch {
         my $c = shift;
@@ -50,6 +53,8 @@ Malts::Web::MobileAgent - Perl extention to do something
 HTTP::MobileAgentのオブジェクトを返す C<$c->mobile_agent> メソッドを生やします。
 
 =head1 METHOD
+
+=head2 C<< $class->init >>
 
 =head2 C<< $c->mobile_agent -> Object >>
 

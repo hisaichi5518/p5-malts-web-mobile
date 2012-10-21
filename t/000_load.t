@@ -3,9 +3,9 @@ use strict;
 use Test::More;
 
 BEGIN {
-    use_ok "Malts::Web::$_" for qw(MobileAgent MobileCharset);
+    use_ok "Malts::Plugin::Web::$_" for qw(MobileAgent MobileCharset);
 }
 
-diag "Testing Malts::Web::MobileAgent/$Malts::Web::MobileAgent::VERSION";
+diag "Testing Malts::Plugin::Web::MobileAgent/$Malts::Plugin::Web::MobileAgent::VERSION";
 
 done_testing;

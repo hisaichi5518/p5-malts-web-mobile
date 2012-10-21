@@ -5,7 +5,7 @@ BEGIN {
 
     # author requires, or bundled modules
     my @devmods = qw(
-        inc::Module::Install             1.00
+        inc::Module::Install             1.06
         Module::Install::AuthorTests     0.002
         Module::Install::Repository      0.06
         Test::Requires                   0.06
@@ -23,7 +23,7 @@ BEGIN {
 }
 use inc::Module::Install;
 
-all_from 'lib/Malts/Web/MobileAgent.pm';
+all_from 'lib/Malts/Plugin/Web/MobileAgent.pm';
 
 requires 'HTTP::MobileAgent';
 requires 'HTTP::MobileAgent::Plugin::Charset';

@@ -3,9 +3,11 @@ use strict;
 use warnings;
 
 package MyApp::Web;
-use parent qw(Malts Malts::Web);
-use Malts::Web::MobileAgent;
-use Malts::Web::MobileCharset;
+use parent qw(Malts);
+__PACKAGE__->load_plugins(qw/
+    Web::MobileAgent
+    Web::MobileCharset
+/);
 
 package main;
 use t::Util;
@@ -56,7 +58,7 @@ subtest 'testing mobile charset: ezweb_user' => sub {
 
 
 subtest 'testing mobile charset: docomo_user' => sub {
-    $c = docomo_user();
+    my $c = docomo_user();
     is $c->html_content_type, "application/xhtml+xml;charset=utf-8";
     isa_ok $c->encoding, 'Encode::XS';
 };

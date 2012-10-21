@@ -19,7 +19,7 @@ sub non_mobile_user {
 sub request {
     my $env = shift;
     my $c = MyApp::Web->new;
-    $c->create_request($env);
+    $c->{request} = $c->create_request($env);
     return $c;
 }
 

@@ -1,17 +1,20 @@
-package Malts::Web::MobileCharset;
+package Malts::Plugin::Web::MobileCharset;
 use strict;
 use warnings;
-use Exporter 'import';
 use HTTP::MobileAgent::Plugin::Charset;
 use Encode::JP::Mobile;
 use Malts::Util ();
 
-our @EXPORT = qw(html_content_type encoding);
+sub init {
+    my ($class, $c) = @_;
+    $c->add_method(html_content_type => \&_html_content_type);
+    $c->add_method(encoding => \&_encoding);
+}
 
 # html_content_typeを呼び出すのは大抵1度なのでキャッシュしない。
-sub html_content_type {
+sub _html_content_type {
     my ($c) = @_;
-    my $ma = $c->mobile_agent; # use Malts::Web::MobileAgent;
+    my $ma = $c->mobile_agent;
 
     my $ct = $ma->is_docomo ?
         'application/xhtml+xml;charset=' : 'text/html;charset=';
@@ -19,7 +22,7 @@ sub html_content_type {
     return $ct;
 }
 
-sub encoding {
+sub _encoding {
     my ($c) = @_;
     $c->{'Malts::Web::MobileCharset::encoding'} ||=
         Malts::Util::find_encoding($c->mobile_agent->encoding);
@@ -39,10 +42,9 @@ Malts::Web::MobileCharset - jp mobile plugin for malts
     package MyApp::Web;
     use strict;
     use warnings;
-    use parent qw(Malts Malts::Web);
-    use Malts::Web::MobileAgent;
-    use Malts::Web::MobileCharset;
+    use parent qw(Malts);
     use Log::Minimal;
+    __PACKAGE__->load_plugins(qw/Web::MobileAgent Web::MobileCharset/);
 
     sub dispatch {
         debugf $c->encoding;
@@ -56,6 +58,8 @@ C<html_content_type>とC<encoding>を日本の携帯電話に対応させます�
 
 =head1 METHODS
 
+=head2 C<< $class->init >>
+
 =head2 C<< $c->html_content_type() -> Str >>
 
     $c->html_content_type;
@@ -66,4 +70,4 @@ C<html_content_type>とC<encoding>を日本の携帯電話に対応させます�
 
 =head1 SEE ALSO
 
-L<HTTP::MobileAgent::Plugin::Charset>i, L<Encode::JP::Mobile>
+L<HTTP::MobileAgent::Plugin::Charset>, L<Encode::JP::Mobile>
