@@ -23,5 +23,4 @@ sub request {
     return $c;
 }
 
-
 1;
